@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 COPY app.py .
+COPY index.html .
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
