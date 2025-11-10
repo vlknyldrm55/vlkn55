@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vlkn55 Stream Proxy 🇹🇷</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #000000, #8b0000);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .flag {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    .output {
+      margin-top: 20px;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="flag">🇹🇷</div>
+  <h1>vlkn55 Stream Proxy</h1>
+  <p>Stream URL girin, otomatik olarak proxy linki oluşturulsun.</p>
+  <input type="text" id="streamInput" placeholder="https://vavoo.to/play/....m3u8">
+  <button onclick="generateLink()">Linki Oluştur</button>
+  <div class="output" id="resultBox"></div>
+  <script>
+    function generateLink() {
+      const input = document.getElementById("streamInput").value.trim();
+      if (!input) return alert("Lütfen bir URL girin.");
+      const proxyURL = `https://vlkn55-production.up.railway.app/proxy/m3u?url=${encodeURIComponent(input)}`;
+      const resultBox = document.getElementById("resultBox");
+      resultBox.innerHTML = `
+        <p><strong>Proxy Link:</strong></p>
+        <input type="text" value="${proxyURL}" id="proxyLink" readonly>
+        <button onclick="copyLink()">Kopyala</button>
+      `;
+    }
+
+    function copyLink() {
+      const linkInput = document.getElementById("proxyLink");
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Link kopyalandı!");
+    }
+  </script>
+</body>
+</html>
