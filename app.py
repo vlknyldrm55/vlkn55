@@ -11,6 +11,7 @@ app = Flask(__name__)
 def ui():
     return send_from_directory('.', 'index.html')
 
+
 def detect_m3u_type(content):
     """Rileva se è un M3U (lista IPTV) o un M3U8 (flusso HLS)"""
     if "#EXTM3U" in content and "#EXTINF" in content:
