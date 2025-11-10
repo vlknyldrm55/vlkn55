@@ -4,8 +4,12 @@ from urllib.parse import urlparse, urljoin, quote, unquote
 import re
 import traceback
 import os
+from flask import send_from_directory
 
-app = Flask(__name__)
+app = Flask(__name__) 
+@app.route('/ui')
+def ui():
+    return send_from_directory('.', 'index.html')
 
 def detect_m3u_type(content):
     """Rileva se è un M3U (lista IPTV) o un M3U8 (flusso HLS)"""
